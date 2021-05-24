@@ -1,0 +1,85 @@
+@import "variables";
+@import "mixins";
+.carousel {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        @include breakpoint(tablets) {
+            text-align: center;
+        }
+    }
+    h1,
+    h2 {
+        font-size: 40px;
+        @include breakpoint(tablets) {
+            font-size: 30px;
+        }
+    }
+    h5 {
+        font-size: 30px;
+        max-width: 640px;
+        @include breakpoint(tablets) {
+            font-size: 20px;
+        }
+    }
+    p {
+        margin-bottom: inherit;
+        margin-left: 10px;
+    }
+    .filter {
+        filter: brightness(0.5);
+        object-fit: cover;
+    }
+    .carousel-caption {
+        width: fit-content;
+        text-align: left;
+        @include breakpoint(tablets) {
+            left: 0;
+            bottom: 5.25rem;
+        }
+    }
+    .group {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 5px;
+        @include breakpoint(tablets) {
+            justify-content: center;
+        }
+    }
+    .selo-mec {
+        position: absolute;
+        bottom: 20px;
+        right: 40px;
+    }
+    .cta {
+        @include breakpoint(tablets) {
+            justify-content: center;
+            display: flex;
+        }
+    }
+}
+
+.carousel-home {
+    .carousel-caption {
+        bottom: 13.25rem;
+        @include breakpoint(tablets) {
+            left: 0;
+            bottom: 0;
+            text-align: center;
+        }
+    }
+    .filter {
+        min-height: 100vh;
+    }
+}
+
+.carousel-home,
+.carousel {
+    .row {
+        @include breakpoint(tablets) {
+            justify-content: center;
+        }
+    }
+}

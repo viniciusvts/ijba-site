@@ -1,0 +1,59 @@
+@import "variables";
+@import "mixins";
+header {
+    a,
+    .nav-link {
+        color: white;
+        text-decoration: none;
+    }
+    a:hover,
+    .nav-link:focus,
+    .nav-link:hover {
+        color: $secundaryColor;
+    }
+    button a:hover {
+        color: white;
+    }
+    li {
+        font-weight: 700;
+        margin-bottom: 10px;
+        @include breakpoint(tablets) {
+            border-bottom: 1px solid #194a45;
+        }
+    }
+    li:last-child {
+        border: 0;
+    }
+    img {
+        max-width: 140px;
+    }
+    .search {
+        background: none;
+        @include transition(0.3s);
+        &:hover {
+            @include transition(0.3s);
+            transform: scale(1.2);
+        }
+    }
+    width: 100%;
+    .navbar-nav {
+        @include breakpoint(tablets) {
+            text-align: center;
+        }
+    }
+    .navbar-brand {
+        @include transition(0.3s);
+        &:hover {
+            @include transition(0.3s);
+            transform: scale(1.1);
+        }
+    }
+}
+
+.green-nav {
+    background: transparent;
+    @include transition(0.2s);
+    @include breakpoint(tablets) {
+        background: $primaryColor;
+    }
+}

@@ -1,0 +1,108 @@
+@mixin breakpoint($point) {
+    @if $point==smartphones {
+        @media (max-width: $smartphones) {
+            @content ;
+        }
+    }
+    @else if $point==tablets {
+        @media (max-width: $tablets) {
+            @content ;
+        }
+    }
+    @else if $point==desktops {
+        @media (max-width: $desktops) {
+            @content ;
+        }
+    }
+    @else if $point==largeDesktops {
+        @media (max-width: $largeDesktops) {
+            @content ;
+        }
+    }
+    @else if $point==hdDesktops {
+        @media (max-width: $hdDesktops) {
+            @content ;
+        }
+    }
+    @else if $point==fullHdDesktops {
+        @media (max-width: $fullHdDesktops) {
+            @content ;
+        }
+    }
+}
+
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    -moz-transition-delay: 2s;
+    -ms-transition-delay: 2s;
+    -o-transition-delay: 2s;
+}
+
+@mixin background($bg) {
+    background: url($bg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow: inset $top $left $blur $color;
+        -moz-box-shadow: inset $top $left $blur $color;
+        box-shadow: inset $top $left $blur $color;
+    }
+    @else {
+        -webkit-box-shadow: $top $left $blur $color;
+        -moz-box-shadow: $top $left $blur $color;
+        box-shadow: $top $left $blur $color;
+    }
+}
+
+@mixin verticalAnimation($timeAnimation:2s, $delay:0) {
+    animation-delay: $delay;
+    animation: $timeAnimation cubic-bezier(0.55, 0.085, 0, 0.99) animationVertical;
+    transform: translateX(0);
+    @keyframes animationVertical {
+        0% {
+            opacity: 0;
+            transform: translateY(-10%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    @-webkit-keyframes animationVertical {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+}
+
+/// mixin para a construção de um grid com somente o necessário
+///
+/// @access public
+/// @author Vinicius de Santana
+/// @param {Size} $tamanhoDeTela — Tamanho da tela
+@mixin mediaScreenMax($tamanhoDeTela) {
+    @media (max-width: $tamanhoDeTela) {
+        @content;
+    }
+}
+
+/// mixin para a construção de um grid com somente o necessário
+///
+/// @access public
+/// @author Vinicius de Santana
+/// @param {Size} $tamanhoDeTela — Tamanho da tela
+@mixin mediaScreenMin($tamanhoDeTela) {
+    @media (min-width: $tamanhoDeTela) {
+        @content;
+    }
+}

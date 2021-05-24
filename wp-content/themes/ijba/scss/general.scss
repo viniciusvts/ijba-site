@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@300;700&display=swap');
+body {
+    font-family: 'Exo', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 700
+}
+
+h4 {
+    font-size: 25px;
+}
+
+p,
+li {
+    font-size: 17px;
+}
+
+a,
+a:hover {
+    color: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+@import "variables";
+@import "button";
+@import "carousel";
+@import "header";
+@import "single-course";
+@import "footer";
