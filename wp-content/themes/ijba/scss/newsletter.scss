@@ -1,0 +1,35 @@
+.newsletter {
+    color: white;
+    padding: 30px 20px 20px 20px;
+    background-image: url("../img/footer.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+    .wpcf7-not-valid-tip,
+    wpcf7-not-valid-tip {
+        color: yellow;
+    }
+    .row {
+        align-items: center;
+    }
+    margin-bottom: 60px;
+    h4 {
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+    }
+    input[type="text"],
+    input[type="email"] {
+        color: white;
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid white;
+        padding: 10px;
+        margin-bottom: 20px;
+        &::placeholder {
+            color: white;
+        }
+    }
+}
