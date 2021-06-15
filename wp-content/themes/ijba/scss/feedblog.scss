@@ -1,0 +1,90 @@
+@import "variables";
+@import "mixins";
+.feedblog {
+    color: white;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-image: url("../img/feedblog.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    h2 {
+        text-align: center;
+        color: $secundaryColor;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        b {
+            color: $primaryColor;
+            display: block;
+        }
+    }
+    .informations {
+        position: relative;
+        display: block;
+        ul,
+        h3,
+        h5,
+        span {
+            position: absolute;
+            display: block;
+            z-index: 1;
+            left: 20px;
+        }
+        h5 {
+            top: 20px;
+            padding-left: 0;
+            list-style: none;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        h3 {
+            bottom: 40px;
+        }
+        span {
+            bottom: 20px;
+            img {
+                padding-left: 10px;
+            }
+        }
+    }
+    .informations:hover img {
+        filter: brightness(1);
+        @include transition(0.2s);
+    }
+    .informations:hover ul,
+    .informations:hover h3,
+    .informations:hover h5,
+    .informations:hover span {
+        display: none;
+    }
+    img {
+        filter: brightness(0.7);
+        max-height: 500px;
+        object-fit: cover;
+        @include transition(0.2s);
+    }
+    span img {
+        filter: brightness(1);
+    }
+    .news {
+        margin-top: 40px;
+        input[type="text"],
+        input[type="email"] {
+            color: white;
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid white;
+            padding: 10px;
+            margin-bottom: 20px;
+            &::placeholder {
+                color: white;
+            }
+        }
+        .wpcf7-not-valid-tip,
+        wpcf7-not-valid-tip {
+            color: yellow;
+        }
+    }
+}
