@@ -124,6 +124,8 @@
 
 <script src="<?php bloginfo("template_url"); ?>/js/main.js" crossorigin="anonymous"></script>
 
+<script src="<?php bloginfo("template_url"); ?>/js/slide-feed-course.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
