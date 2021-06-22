@@ -1,20 +1,22 @@
   <div id="carouselExampleCaptions" class="carousel carousel-home slide" data-bs-ride="carousel">
-    <!-- indicadores -->
-    <div class="carousel-indicators">
-      <?php
-      for ($slide = 0; $slide < 6; $slide++) {
-      ?>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $slide; ?>" class="<?php if ($slide == 0) : echo "active";
-                                                                                                                        endif; ?>" aria-current="true" aria-label="Slide <?php echo $slide; ?>"> </button>
-      <?php
-      }
-      ?>
-    </div>
-
     <div class="carousel-inner">
       <?php
-      $curso = new WP_Query(array('post_type' => 'curso', 'orderby' => 'date', 'posts_per_page' => '6'));
+      $curso = new WP_Query(array(
+        'post_type' => 'curso',
+        'orderby' => 'date',
+        'posts_per_page' => 6,
+        'tax_query' => array(
+          array(
+            'taxonomy' => 'categoria_curso',
+            'field' => 'slug',
+            'terms' => 'pos-graduacao'
+          )
+        ),
+      ));
+
       $index = 0;
+      $postsExensao = $curso->found_posts;
+
       while ($curso->have_posts()) : $curso->the_post();
       ?>
         <div class="carousel-item <?php if ($index == 0) {
@@ -25,6 +27,7 @@
 
             <div class="row mt-4">
               <h5>
+
                 Curso de
                 <?php
                 $postId = get_the_id();
@@ -94,6 +97,17 @@
       <div class="selo-mec d-none d-md-flex">
         <img src="<?php bloginfo('template_url') ?>/img/selo-mec.png" alt="Selo MEC">
       </div>
+    </div>
+
+    <!-- indicadores -->
+    <div class="carousel-indicators">
+      <?php
+      for ($slide = 0; $slide < $postsExensao - 1; $slide++) {
+      ?>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $slide; ?>" class="<?php if ($slide == 0) : echo "active";endif; ?>" aria-current="true" aria-label="Slide <?php echo $slide; ?>"> </button>
+      <?php
+      }
+      ?>
     </div>
 
     <!-- navegação -->

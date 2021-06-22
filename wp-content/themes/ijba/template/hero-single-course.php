@@ -2,7 +2,6 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <?php the_post_thumbnail('large', array('class' => 'd-block w-100 filter', 'title' => get_the_title(), 'alt' => get_the_title())); ?>
-      <!-- <img src="http://instituto-junguiano.local/wp-content/uploads/2021/05/curso.jpg" class="d-block w-100 filter" alt="Teoria em psicologia Junguiana"> -->
       <div class="carousel-caption">
         <h5>
           Curso de
