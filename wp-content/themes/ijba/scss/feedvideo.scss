@@ -1,0 +1,24 @@
+@import "variables";
+@import "mixins";
+.feedvideo {
+    h2 {
+        text-align: center;
+        color: $secundaryColor;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        b {
+            color: $primaryColor;
+            display: block;
+        }
+    }
+    color: white;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-image: url("../img/bullets.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-position-y: center;
+    background-color: #FBFBFB;
+}
