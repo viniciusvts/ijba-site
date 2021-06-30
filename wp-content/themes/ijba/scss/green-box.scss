@@ -1,0 +1,56 @@
+@import "variables";
+.green-box{
+    color: #1b4440;
+    background-image: url(../img/footer.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 25px 40px;
+    @media (min-width: $tablets) {
+        padding: 25px 60px 50px;
+        
+    }
+    @media (min-width: $desktops) {
+        padding: 25px 40px 50px;
+    }
+    // comportamento dos indicadores de carousel foi alterado
+    // para não ficar por cima da bluebox
+    // se alterar posição aqui, não esquecer de alterar lá
+    @media (min-width: $largeDesktops) {
+        border-radius: 5px;
+        transform: translateY(-90px);
+        margin-bottom: -90px;
+    }
+    h2{
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 35px;
+    }
+    form{
+        @media (min-width: $largeDesktops) {
+            display: flex;
+        }
+    }
+    select{
+        width: 100%;
+        background-color: transparent;
+        color: white;
+        border: none;
+        border-bottom: solid 1px white;
+        padding: 5px 0;
+        @media (min-width: $tablets) {
+            margin-bottom: 30px;
+            padding: 10px 0;
+        }
+        @media (min-width: $largeDesktops) {
+            margin: 0 50px 0 0;
+        }
+        option{
+            color: #1b4440;
+        }
+    }
+    button{
+        margin: 0 auto;
+        white-space: nowrap;
+    }
+}

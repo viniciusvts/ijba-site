@@ -59,11 +59,17 @@
             display: flex;
         }
     }
+    // muda o conportamento dos indicadores para não ficar em cima da blue box
+    .carousel-indicators{
+        @media (min-width: $largeDesktops) {
+            bottom: 80px;
+        }
+    }
 }
 
 .carousel-home {
     .carousel-caption {
-        bottom: 13.25rem;
+        top: 7rem;
         @include breakpoint(tablets) {
             left: 0;
             bottom: 0;
@@ -72,6 +78,22 @@
     }
     .filter {
         min-height: 100vh;
+    }
+}
+
+.carousel-single {
+    .filter {
+        min-height: 80vh;
+        @media (min-width: $fullHdDesktops) {
+            min-height: 60vh;
+        }
+        @media (min-width: 2500px) {
+            min-height: 40vh;
+        }
+    }
+    .carousel-caption{
+        bottom: unset;
+        top: 7rem;
     }
 }
 

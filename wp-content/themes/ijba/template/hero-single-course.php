@@ -1,4 +1,4 @@
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleCaptions" class="carousel carousel-single slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <?php the_post_thumbnail('large', array('class' => 'd-block w-100 filter', 'title' => get_the_title(), 'alt' => get_the_title())); ?>
