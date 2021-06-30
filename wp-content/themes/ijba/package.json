@@ -4,12 +4,19 @@
     "description": "Site Instituto Junguiano da Bahia",
     "main": "index.php",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "sass": "sass scss:css --style compressed",
+        "sasswatch": "sass --watch scss:css --style compressed",
+        "uglify": "uglifyjs js/greenbox.js --compress --mangle --output js/greenbox.min.js",
+        "prod" : "npm run sass && npm run uglify"
     },
     "author": "Dna for marketing",
     "license": "ISC",
     "dependencies": {
         "bootstrap": "^5.0.1",
         "sass": "^1.32.13"
+    },
+    "devDependencies": {
+        "uglify-js": "^3.13.10"
     }
 }
