@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "sass": "sass scss:css --style compressed",
-        "sasswatch": "sass --watch scss:css --style compressed",
+        "sass:watch": "sass --watch scss:css --style compressed",
         "uglify": "uglifyjs js/greenbox.js --compress --mangle --output js/greenbox.min.js",
         "prod" : "npm run sass && npm run uglify"
     },
