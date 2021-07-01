@@ -142,4 +142,6 @@
     }
     add_filter('post_link', 'change_blog_links', 1, 3);
     /* End Reescrita blog */
-?>
+    
+    include("inc/customizer.php");
+    include("inc/bootstrap-navwalker.php");

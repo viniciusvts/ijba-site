@@ -8,23 +8,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarText">
-        <ul class="navbar-nav navbar-text mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Sobre</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Cursos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Eventos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Biblioteca</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contato</a>
-          </li>
-        </ul>
+      <?php 
+        wp_nav_menu(
+          array(
+            'menu_class' => 'navbar-nav navbar-text mb-2 mb-lg-0',
+            'container' => false,
+            'theme_location' => 'main-menu',
+            'depth' => 1,
+            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+            'walker'            => new WP_Bootstrap_Navwalker(),
+          )
+        ); 
+      ?>
       </div>
       <div class="row align-items-center justify-content-end d-none d-md-flex">
         <div class="col">
