@@ -47,7 +47,7 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
-
+.vscode
 wp-content/cache
 wp-content/wflogs
 wp-content/uploads
