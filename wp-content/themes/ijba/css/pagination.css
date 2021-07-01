@@ -1,1 +1,1 @@
-.pagination .page-numbers{padding:10px}/*# sourceMappingURL=pagination.css.map */
+.pagination .page-numbers{padding:10px 20px;color:#000;transition:all .3s}.pagination .page-numbers.current,.pagination .page-numbers:hover{color:#fff;background-color:#15c99c}/*# sourceMappingURL=pagination.css.map */

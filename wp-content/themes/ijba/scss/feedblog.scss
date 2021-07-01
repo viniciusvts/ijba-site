@@ -4,7 +4,7 @@
     color: white;
     padding-top: 60px;
     padding-bottom: 60px;
-    background-image: url("../img/feedblog.jpg");
+    // background-image: url("../img/feedblog.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
@@ -17,6 +17,14 @@
         b {
             color: $primaryColor;
             display: block;
+        }
+    }
+    .t-up{
+        @media (min-width: $tablets) {
+            padding-top: 30px;
+            background-color: white;
+            transform: translateY(-85px);
+            border-radius: 5px;
         }
     }
     .informations {
