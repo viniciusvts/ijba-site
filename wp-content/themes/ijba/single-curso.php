@@ -62,10 +62,12 @@
             <div class="informations mb-3">
                 <h5>Mais informações</h5>
                 <ul>
-                    <?php if (get_field('preco') != false) : ?>
+                    <?php
+                    $preco = get_field('preco');
+                    if ($preco != false) : ?>
                         <li>
                             <h6>Mensalidade</h6>
-                            <p><?php the_field('preco'); ?></p>
+                            <p>R$<?php echo number_format($preco['preco'], 2) ?> (<?php echo $preco['qtd_parce'] ?> parcelas)</p>
                         </li>
                     <?php endif; ?>
 
