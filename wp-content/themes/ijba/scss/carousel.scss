@@ -31,14 +31,12 @@
     .filter {
         filter: brightness(0.5);
         object-fit: cover;
+        min-height: 250px;
     }
     .carousel-caption {
         width: fit-content;
         text-align: left;
-        @include breakpoint(tablets) {
-            left: 0;
-            bottom: 5.25rem;
-        }
+        bottom: 2rem;
     }
     .group {
         display: flex;
