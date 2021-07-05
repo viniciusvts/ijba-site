@@ -144,4 +144,4 @@
     /* End Reescrita blog */
     
     include("inc/customizer.php");
-    include("inc/bootstrap-navwalker.php");
+    include("vendor/bootstrap-navwalker.php");
