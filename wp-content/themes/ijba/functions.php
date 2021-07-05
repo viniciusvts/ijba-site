@@ -145,3 +145,4 @@
     
     include("inc/customizer.php");
     include("vendor/bootstrap-navwalker.php");
+    include("api/endpoint.php");

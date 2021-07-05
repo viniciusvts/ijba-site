@@ -1,5 +1,7 @@
-<?php get_header(); ?>
-
+<?php
+get_header();
+$isRequestOk = ($_GET['isRequestOk'] == true);
+?>
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -14,11 +16,20 @@
     </div>
 </div>
 </div>
+<?php
+if($isRequestOk){
+?>
 <div class="container mt-5 mb-5">
-    <p>Agradecemos o seu contato! Acesse a sua caixa de e-mail para mais informações sobre matrícula.</p>
-    <a href="<?php the_permalink(); ?>">
-        <button class="green">Acessar agora mesmo</button>
-    </a>
+    <?php the_content(); ?>
 </div>
+<?php
+} else {
+?>
+<div class="container mt-5 mb-5">
+    <p>Houve um erro ao processar sua solicitação, tente novamente mais tarde.</p>
+</div>
+<?php
+}
+?>
 
 <?php get_footer(); ?>

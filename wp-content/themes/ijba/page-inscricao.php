@@ -13,13 +13,21 @@
         </div>
     </div>
 </div>
+<div class="container teams-itau-int py-5 t-up">
+    <div class="row">
+        <div class="col">
+        <?php
+        get_template_part('/template/form-integracao-teams-itau');
+        ?>
+        </div>
+    </div>
 </div>
-<div class="container mt-5 mb-5">
+<!-- <div class="container mt-5 mb-5">
     <?php echo $_GET['cat']; ?>
     <p>Agradecemos o seu contato! Acesse a sua caixa de e-mail para mais informações sobre matrícula.</p>
     <a href="#">
         <button class="green">Acessar agora mesmo</button>
     </a>
-</div>
+</div> -->
 
 <?php get_footer(); ?>
