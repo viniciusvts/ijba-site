@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <?php get_template_part('template/hero-single-course'); ?>
 <div class="container course">
-    <div class="row">
+    <div class="row t-up">
         <!-- conteúdo-->
         <div class="col-md-9">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -96,4 +96,6 @@
 </div>
 
 <?php get_template_part('template/feedcourse'); ?>
+<?php get_template_part('template/greenbox'); ?>
+<div class="mb-5"></div>
 <?php get_footer(); ?>

@@ -4,6 +4,14 @@
     margin-top: 40px;
     background: white;
     border-radius: 6px;
+    .t-up{
+        @media (min-width: $tablets) {
+            padding-top: 30px;
+            background-color: white;
+            transform: translateY(-70px);
+            border-radius: 5px;
+        }
+    }
     .nav-pills .nav-link.active,
     .nav-pills .show>.nav-link {
         background: $primaryColor;
