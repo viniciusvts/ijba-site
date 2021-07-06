@@ -76,12 +76,27 @@
             opacity: 1;
         }
     }
+    .navNext, .navPrev{
+        // no mobile fica em cima do texto, então uma transparência
+        background-color: #eee5;
+        @media (min-width: $tablets) {
+            background-color: #eee;
+        }
+    }
     .navPrev {
         float: left;
         opacity: 0.1;
+        margin-left: -10px;
+        @media (min-width: $tablets) {
+            margin-left: -25px;
+        }
     }
     .navNext {
         float: right;
+        margin-right: -10px;
+        @media (min-width: $tablets) {
+            margin-right: -25px;
+        }
     }
 }
 

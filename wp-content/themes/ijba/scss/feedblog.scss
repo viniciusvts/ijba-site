@@ -8,6 +8,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
+    &.gray-bg{
+        background-image: url("../img/feedblog.jpg");
+    }
     h2 {
         text-align: center;
         color: $secundaryColor;

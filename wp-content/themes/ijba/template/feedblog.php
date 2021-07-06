@@ -1,4 +1,4 @@
-<section class="feedblog">
+<section class="feedblog gray-bg">
     <h2>
         O mais completo conteúdo
         <b>Sobre Psicologia Junguiana</b>
