@@ -13,48 +13,30 @@
         </div>
     </div>
 </div>
-</div>
-<div class="container mt-5 mb-5">
-    <div class="row">
+<?php
+global $paged;
+$wp_query = new WP_Query(array(
+    'post_type' => 'video',
+    'posts_per_page' => 8,
+    'paged' => $paged,
+));
+?>
+<div class="container mt-5 mb-5 pagevideo">
+    <div class="row t-up">
+        <?php
+        while ($wp_query->have_posts()){
+            $wp_query->the_post();
+        ?>
         <div class="col-md-6 mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/3dNsgtPoyJE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <?php the_field('youtube_iframe'); ?>
+            <p class="text-center desc"><?php the_title(); ?></p>
         </div>
-
-        <div class="col-md-6 mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/yg9ZKONBChc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/PpQvq_geIGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/6UR-j-4G81o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/ZtF1YrHmVhU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/pbcaC8YhpgQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/U0X8WwmP7kY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/lsSLGPKROng" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/fLJEhofYKNs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/Qet5x0ARoIk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+        <?php
+        }
+        ?>
+    </div>
+    <div class="pagination justify-content-center px-2">
+        <?php wordpress_pagination(); ?>
     </div>
 </div>
 

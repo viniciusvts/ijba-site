@@ -1,3 +1,9 @@
+<?php
+$videos = get_posts(array(
+    'post_type' => 'video',
+    'posts_per_page' => 4,
+));
+?>
 <section class="feedvideo">
     <h2>
         Galeria de vídeos
@@ -5,21 +11,18 @@
     </h2>
     <div class="container mt-5 mb-5">
         <div class="row">
+            <?php
+            foreach ($videos as $key => $video) {
+            ?>
             <div class="col-md-6 mb-4">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/3dNsgtPoyJE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <?php echo get_field('youtube_iframe', $video->ID); ?>
+                <p class="text-center desc"><?php echo $video->post_title; ?></p>
             </div>
-
-            <div class="col-md-6 mb-4">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/yg9ZKONBChc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/PpQvq_geIGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/6UR-j-4G81o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
+            <?php
+            }
+            ?>
+        <a href="/videos/">
+            <button class="green mx-auto">Veja mais vídeos</button>
+        </a>
     </div>
 </section>
