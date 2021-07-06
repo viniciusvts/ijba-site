@@ -70,11 +70,15 @@ function ssw_integra_teams_itau(){
         // envia email para o adm
         $to = get_option('admin_email'); // email para o usuário
         $subject = 'Inscrição de aluno IBA';
-        $message .= 'Dados do usuário: <br>';
+        $message .= '<h2>Dados do usuário: </h2>';
         foreach ($_POST as $key => $value) {
-            $message .= $key . ': ' . $value . '<br>';
+            $message .= '<p>' . $key . ': ' . $value . '</p>';
         }
-        $message .= 'Segue link dos boletos: ' . implode(",<br>", $boletosLinks);
+        $message .= '<p>Segue link dos boletos:</p>';
+        foreach ($boletosLinks as $key => $boleto) {
+            $position = $key + 1;
+            $message .= '<p>' . $position . ': ' . $boleto . '</p>';
+        }
         $headers = array('Content-Type: text/html; charset=UTF-8');
         $wpmail = wp_mail( $to, $subject, $message, $headers );
         // end send email
@@ -104,10 +108,14 @@ function ssw_integra_teams_itau(){
     if($isRequestOk){
         // envia email depois de excluir url e identificador
         $to = $_POST['email']; // email para o usuário
-        $subject = 'Boleto do seu curso IJBA';
-        $message = 'Usuário no teams: ' . $emailIJBA;
-        $message .= '<br>Senha: BemVindo910';
-        $message .= '<br>Segue link dos boletos: ' . implode(",<br>", $boletosLinks);
+        $subject = 'Dados do seu curso IJBA';
+        $message = '<p>Usuário no teams: ' . $emailIJBA . '</p>';
+        $message .= '<p>Senha: BemVindo910</p>';
+        $message .= '<p>Segue link dos boletos:</p>';
+        foreach ($boletosLinks as $key => $boleto) {
+            $position = $key + 1;
+            $message .= '<p>' .$position . ': ' . $boleto . '</p>';
+        }
         $headers = array('Content-Type: text/html; charset=UTF-8');
         $wpmail = wp_mail( $to, $subject, $message, $headers );
         // end send email
