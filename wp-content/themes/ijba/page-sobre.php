@@ -15,7 +15,9 @@
 </div>
 </div>
 <div class="container about mt-5 mb-5">
-    <?php the_content(); ?>
+    <div class="row t-up">
+        <?php the_content(); ?>
+    </div>
 </div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">

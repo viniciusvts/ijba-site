@@ -57,3 +57,12 @@ header {
         background: $primaryColor;
     }
 }
+
+.t-up{
+    @media (min-width: $tablets) {
+        padding-top: 30px;
+        background-color: white;
+        transform: translateY(-85px);
+        border-radius: 5px;
+    }
+}
