@@ -19,13 +19,16 @@ $isRequestOk = ($_GET['isRequestOk'] == true);
 <?php
 if($isRequestOk){
 ?>
-<div class="container mt-5 mb-5">
+<div class="container my-5 text-center">
     <?php the_content(); ?>
+    <a href="https://moodle.ijba.com.br/login/index.php" target="_blank">
+        <button class="green mx-auto">Acesse agora mesmo</button>
+    </a>
 </div>
 <?php
 } else {
 ?>
-<div class="container mt-5 mb-5">
+<div class="container my-5 text-center">
     <p>Houve um erro ao processar sua solicitação, tente novamente mais tarde.</p>
 </div>
 <?php
