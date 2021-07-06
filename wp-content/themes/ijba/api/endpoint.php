@@ -33,7 +33,7 @@ function ssw_integra_teams_itau(){
         $precoField = get_field('preco', $_POST['curso']);
         // transformar em numeros
         $floatpreco = floatval($precoField['preco']);
-        $valorDoBoleto = floatval($floatpreco);
+        $valorDoBoleto = number_format($floatpreco, 2);
 
         $parcField = intval($precoField['qtd_parce']);
         
