@@ -52,8 +52,9 @@
                                                 </h3>
                                                 <p>
                                                     <?php
-                                                    $excerpt = get_the_excerpt();
-                                                    echo $excerpt = substr($excerpt, 0, 320);
+                                                    $justificativa = get_field('justificativa', get_the_id());
+                                                    $justificativaStripTags = strip_tags($justificativa);
+                                                    echo $excerpt = substr($justificativaStripTags, 0, 320);
                                                     ?>
                                                     [...]
                                                 </p>
