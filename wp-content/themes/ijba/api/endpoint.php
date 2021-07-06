@@ -96,12 +96,12 @@ function ssw_integra_teams_itau(){
             $nameWithoutSpaces,
             $emailIJBA);
         // guarda o id
-        // if($userCreated->id){
-        //     $usersCreated[] = $userCreated->id;
-        //     $groupIdSelected = get_option(SSW_TEAMSI_GROUP);
-        //     $groupResponse = $SSWTI->moveUserToGroup($usersCreated, $groupIdSelected);
-        // }
-        if(isset($userCreated->error)){ // || isset($groupResponse->error)){
+        if($userCreated->id){
+            $usersCreated[] = $userCreated->id;
+            $groupIdSelected = get_option(SSW_TEAMSI_GROUP);
+            $groupResponse = $SSWTI->moveUserToGroup($usersCreated, $groupIdSelected);
+        }
+        if(isset($userCreated->error) || isset($groupResponse->error)){
             $isRequestOk = false;
         }
     }
@@ -121,7 +121,7 @@ function ssw_integra_teams_itau(){
         // end send email
     }
   $url = get_option('siteurl') . '/agradecimento-inscricao/?isRequestOk=' . $isRequestOk;
-  //vai para o url
+  // redireciona para o agradecimento
   wp_redirect($url);
   exit;
 }
