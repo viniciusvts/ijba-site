@@ -52,7 +52,7 @@
                 $categoria = $term->term_id;
             }
             ?>
-            <a href="<?php bloginfo('url'); ?>/inscricao?curso=<?php echo $postId; ?>&cat=<?php echo $categoria ?>">
+            <a href="<?php bloginfo('url'); ?>/inscricao/?cursoId=<?php echo $postId; ?>">
                 <img src="<?php bloginfo('template_url') ?>/img/banner-inscricao.jpg" alt="Faça sua inscrição" class="banner-subscribe">
             </a>
         </div>

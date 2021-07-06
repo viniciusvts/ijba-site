@@ -95,8 +95,10 @@ method="post">
                             ' parc. de R$' .
                             number_format($precoField['preco'], 2) .
                             ')';
+                $selected = (isset($_GET['cursoId']) && ($_GET['cursoId'] == $curso->ID))
             ?>
-                <option value="<?php echo $curso->ID; ?>">
+                <option value="<?php echo $curso->ID; ?>"
+                <?php if($selected){ echo 'selected'; } ?>>
                     <?php echo $optionDesc; ?>
                 </option>
             <?php
@@ -111,5 +113,5 @@ method="post">
     </div>
     
     <p>* Campos obrigatórios</p>
-    <button class="green w-50 mx-auto" type="submit">Enviar</button>
+    <button class="green w-50 mx-auto" type="submit">Inscrever</button>
 </form>
