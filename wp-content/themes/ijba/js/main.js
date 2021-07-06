@@ -22,9 +22,17 @@
             }
         }
         // executa mascara de telefone
-        querySelector('#phone').addEventListener('keyup',execMascaraTel);
+        try {
+            querySelector('#phone').addEventListener('keyup',execMascaraTel);
+        } catch (error) {
+            console.warn('Erro ao definir mascara telefone: ', error);
+        }
         // executa mascara de cep na inscrição
-        querySelector('#cep_pagador').addEventListener('keyup',execMascaraCEP);
+        try {
+            querySelector('#cep_pagador').addEventListener('keyup',execMascaraCEP);
+        } catch (error) {
+            console.warn('Erro ao definir mascara cep: ', error);
+        }
     }
     /**
      * Mascara de Telefone para ser usada em inputs html
