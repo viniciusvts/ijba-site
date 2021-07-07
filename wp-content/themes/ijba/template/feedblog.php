@@ -1,10 +1,10 @@
-<section class="feedblog gray-bg">
-    <h2>
-        O mais completo conteúdo
-        <b>Sobre Psicologia Junguiana</b>
-    </h2>
+<section class="feedblog <?php echo $feedblog_class; ?>">
     <div class="container">
-        <div class="row">
+        <div class="row  <?php echo $feedblog_row; ?>">
+            <h2>
+                O mais completo conteúdo
+                <b>Sobre Psicologia Junguiana</b>
+            </h2>
             <?php
             $wp_query = new WP_Query(array(
                 'post_type' => 'post',
@@ -37,7 +37,10 @@
             ?>
         </div>
     </div>
-
+    <?php
+    if($feedblog_nocta){/* */}
+    else{
+    ?>
     <div class="container">
         <div class="row">
             <div class="news">
@@ -46,4 +49,7 @@
             </div>
         </div>
     </div>
+    <?php
+    }
+    ?>
 </section>
