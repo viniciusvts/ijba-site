@@ -16,10 +16,10 @@
 
 <div class="container contato mt-5 mb-5">
     <div class="row">
-        <div class="col-md-auto">
+        <div class="col-lg-6">
             <?php echo do_shortcode('[contact-form-7 id="66" title="Fale Conosco" html_id="contato"]'); ?>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <p>
                 <b>E-mail:</b>
                 <?php the_field('email'); ?>
