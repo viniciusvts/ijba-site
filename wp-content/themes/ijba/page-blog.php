@@ -17,12 +17,8 @@
 
 
 <section class="feedblog">
-    <h2>
-        O mais completo conteúdo
-        <b>Sobre Psicologia Junguiana</b>
-    </h2>
     <div class="container">
-        <div class="row">
+        <div class="row t-up">
             <?php
             $wp_query = new WP_Query(array(
                 'post_type' => 'post',
@@ -61,12 +57,7 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="news">
-                <h3 class="text-center mb-3">Receba conteúdos exclusivos</h3>
-                <?php echo do_shortcode('[contact-form-7 id="3746" title="Newsletter" html_id="newsletter"]'); ?>
-            </div>
-        </div>
+        <?php get_template_part('template/newsletter') ?>
     </div>
 </section>
 
