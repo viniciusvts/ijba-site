@@ -12,13 +12,15 @@
     @media (min-width: $desktops) {
         padding: 25px 40px 50px;
     }
-    // comportamento dos indicadores de carousel foi alterado
-    // para não ficar por cima da bluebox
-    // se alterar posição aqui, não esquecer de alterar lá
-    @media (min-width: $largeDesktops) {
-        border-radius: 5px;
-        transform: translateY(-90px);
-        margin-bottom: -90px;
+    &.negative-top{
+        // comportamento dos indicadores de carousel foi alterado
+        // para não ficar por cima da bluebox
+        // se alterar posição aqui, não esquecer de alterar lá
+        @media (min-width: $largeDesktops) {
+            border-radius: 5px;
+            transform: translateY(-90px);
+            margin-bottom: -90px;
+        }
     }
     h2{
         color: white;
