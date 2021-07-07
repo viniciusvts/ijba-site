@@ -21,11 +21,24 @@
     </div>
 </div>
 <?php
-set_query_var( 'feedblog_class', 'mb-5' );
+set_query_var( 'feedblog_class', 'pb-0' );
 set_query_var( 'feedblog_row', 't-up' );
 set_query_var( 'feedblog_nocta', true );
 get_template_part('template/feedblog');
-get_template_part('template/greenbox');
+?>
+<a href="/blog/">
+    <button class="green mx-auto mb-5">Ver mais notícias</button>
+</a>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <?php
+            get_template_part('template/newsletter');
+            ?>
+        </div>
+    </div>
+</div>
+<?php
 echo '<div class="mb-5"></div>';
 get_footer();
 ?>
