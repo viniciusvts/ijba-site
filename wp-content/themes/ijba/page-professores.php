@@ -16,7 +16,7 @@
 
 
 
-<section class="feedblog">
+<section class="feedblog professores">
     <div class="container">
         <div class="row t-up">
             <?php
