@@ -53,7 +53,7 @@
         .then(json => {
             //limpa novamente e lança "Selecione"
             cursoInput.options.length = 0;
-            cursoInput.options.add(new Option('Selecione o tipo', ''));
+            cursoInput.options.add(new Option('Nome do curso', ''));
             //popula o HTMLOptionCollection
             for (const item of json) {
                 cursoInput.options.add(new Option(item.title.rendered, item.slug));
