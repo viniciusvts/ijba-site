@@ -39,7 +39,7 @@
         /** @type HTMLElement */
         var cursoInput = querySelector('#curso');
         var catId = evt.target.value;
-        var url = 'http://ijba.localhost/wp-json/wp/v2/curso?per_page=100';
+        var url = '/wp-json/wp/v2/curso?per_page=100';
         if (catId != ''){
             url += '&categoria_curso=' + catId;
         }
