@@ -27,6 +27,11 @@
         } catch (error) {
             console.warn('Erro ao definir mascara telefone: ', error);
         }
+        try {
+            querySelector('[name="telefone"]').addEventListener('keyup',execMascaraTel);
+        } catch (error) {
+            console.warn('Erro ao definir mascara telefone: ', error);
+        }
         // executa mascara de cep na inscrição
         try {
             querySelector('#cep_pagador').addEventListener('keyup',execMascaraCEP);
