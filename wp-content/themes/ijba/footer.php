@@ -3,17 +3,18 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-auto mb-4">
+            <div class="col-md-3 mb-4">
                 <h4>Menu</h4>
-                <ul>
-                    <li>Cursos de Pós-Graduação</li>
-                    <li>Cursos de Aperfeiçoamento</li>
-                    <li>Cursos de Extensão</li>
-                    <li>Sobre o IJBA</li>
-                    <li>Blog</li>
-                    <li>Artigos</li>
-                    <li>Área do aluno</li>
-                </ul>
+                <?php
+                wp_nav_menu(
+                    array(
+                        'menu_class' => '',
+                        'container' => false,
+                        'theme_location' => 'foot-menu',
+                        'depth' => 1,
+                    )
+                ); 
+                ?>
             </div>
             <div class="col-md-4 mb-4">
                 <h4>Links Úteis</h4>
@@ -56,9 +57,17 @@
             <div class="col-md-4">
                 <h4>Contato</h4>
                 <ul>
-                    <li><b>Email:</b> instituto@ijba.com.br</li>
+                    <li>
+                        <a href="mailto:instituto@ijba.com.br">
+                            <b>Email:</b> instituto@ijba.com.br
+                        </a>
+                    </li>
                     <li><b>Endereço:</b> Alameda Bons Ares, 15 – Candeal, Salvador – BA, 40296-360</li>
-                    <li><b>Telefone:</b> (71) 3356-6811</li>
+                    <li>
+                        <a href="tel:(71) 3356-6811">
+                            <b>Telefone:</b> (71) 3356-6811
+                        </a>
+                    </li>
                 </ul>
                 <a href="<?php bloginfo('url'); ?>/contato">
                     <button class="green mt-5">Fale conosco </button>
