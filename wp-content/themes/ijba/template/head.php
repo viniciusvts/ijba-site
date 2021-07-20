@@ -28,7 +28,7 @@
           </button>
         </div>
         <div class="col-auto">
-          <a href="<?php bloginfo('url'); ?>/contato">
+          <a href="https://teams.microsoft.com/_#/school//?ctx=teamsGrid">
             <button class="green">
               Área do aluno
             </button>
