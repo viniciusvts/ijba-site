@@ -1,6 +1,10 @@
 <?php
-$SSWTI = new ssw_tint_wp();
-$groups = $SSWTI->getGroups();
+
+/** Array que contém o slug das categorias do curso */
+$catSlugs = array_map(function($term){
+    return $term->slug;
+}, $terms);
+$isPosGraduacao = in_array('pos-graduacao', $catSlugs);
 $cursosSelect = get_posts(array(
 	'numberposts'	=> -1,
 	'post_type'		=> 'curso',
@@ -8,6 +12,7 @@ $cursosSelect = get_posts(array(
 ));
 ?>
 <form class="row"
+id="form-teams-itau"
 action="<?php echo get_option('siteurl'); ?>/wp-json/dna_theme/v1/integra-teams-itau/"
 method="post">
     <input type="hidden" name="_nonce" value="<?php echo wp_create_nonce(); ?>">
@@ -67,9 +72,14 @@ method="post">
         </select>
     </div>
 
-    <div class="col-12">
+    <div class="col-7">
         <label for="logradouro_pagador">Endereço *</label>
         <input type="text" name="logradouro_pagador" id="logradouro_pagador" required>
+    </div>
+
+    <div class="col-md-5">
+        <label for="cpf_cnpj_pagador">CPF/CNPJ *</label>
+        <input type="text" name="cpf_cnpj_pagador" id="cpf_cnpj_pagador" required>
     </div>
     
     <div class="col-md-7">
@@ -82,23 +92,22 @@ method="post">
         <input type="text" name="cep_pagador" id="cep_pagador" placeholder="Cep" required>
     </div>
     
-    <div class="col-md-7">
+    <div class="col-md-7 <?php echo $isPosGraduacao?'d-none':''; ?>">
         <label for="curso">Curso *</label>
         <select name="curso" id="curso" required>
             <option value="">Selecione um curso</option>
             <?php
             foreach ($cursosSelect as $key => $curso) {
                 $precoField = get_field('preco', $curso->ID);
-                $optionDesc = $curso->post_title .
-                            ' ( ' .
-                            $precoField['qtd_parce'] .
-                            ' parc. de R$' .
-                            number_format($precoField['preco'], 2) .
-                            ')';
-                $selected = (isset($_GET['cursoId']) && ($_GET['cursoId'] == $curso->ID))
+                $optionDesc = $curso->post_title;
+                $isSelected = (isset($_GET['cursoId']) && ($_GET['cursoId'] == $curso->ID));
+                if($isSelected){ // guardo o id do curso para o select de preço
+                    $cursoSelectedID = $curso->ID;
+                }
+
             ?>
                 <option value="<?php echo $curso->ID; ?>"
-                <?php if($selected){ echo 'selected'; } ?>>
+                <?php if($isSelected){ echo 'selected'; } ?>>
                     <?php echo $optionDesc; ?>
                 </option>
             <?php
@@ -106,12 +115,39 @@ method="post">
             ?>
         </select>
     </div>
-
-    <div class="col-md-5">
-        <label for="cpf_cnpj_pagador">CPF/CNPJ *</label>
-        <input type="text" name="cpf_cnpj_pagador" id="cpf_cnpj_pagador" required>
+    
+    <div class="col-md-5 <?php echo $isPosGraduacao?'d-none':''; ?>">
+        <label for="precoParcelas">Parcelas do curso *</label>
+        <select name="precoParcelas" id="precoParcelas" required>
+            <option value="">Selecione uma parcela</option>
+            <?php
+            // se tem curso selecionado lanço os valores no select de preço,
+            // caso negativo, deixo o select de preço vazio
+            if (isset($cursoSelectedID)){
+                $precoField = get_field('preco', $cursoSelectedID);
+                foreach ($precoField as $key => $item) {
+                    $qtd_parc = $item['qtd_parce'];
+                    $parcStr = $item['qtd_parce'] == 1 ? 'parcela' : 'parcelas';
+                    $custo = number_format($item['preco'], 2, ',', '.');
+                    $optionValue = $item['preco'].'|'.$item['qtd_parce'];
+                    $optionText = $qtd_parc.' '.$parcStr.' de R$ '.$custo;
+            ?>
+                <option value="<?php echo $optionValue; ?>" <?php echo $key==0?'selected':''; ?>>
+                <?php echo $optionText; ?>
+                </option>
+            <?php
+                }
+            }
+            ?>
+        </select>
     </div>
     
+    <?php
+    if(isset($_GET['teams'])){
+        echo '<input type="hidden" name="teams" value="true">';
+    }
+    ?>
+
     <p>* Campos obrigatórios</p>
     <button class="green w-50 mx-auto" type="submit">Inscrever</button>
 </form>

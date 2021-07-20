@@ -46,15 +46,43 @@
             </div>
 
             <?php
+            /*
+            ATENÇÂO PROGRAMADOR DO FUTURO!!!!
+            A IJBA tem regra de negócio para algumas categorias de curso, categorias essas:
+            >> pos graduação, aperfeiçoamento, extensão, pequena duração <<
+            1) pos-graduacao - mostra dois banners: cadastro no teams e reserva de vaga
+            o primeiro vou cadastrar no teams o segundo converto o lead para o time de marketing.
+            Em ambos, mando depois para o site da bahiana
+            2) aperfeiçoamento, extensão - gera boleto, e cadastra no teams
+            3) pequena duração - gera boleto e não mand para o teams
+
+            Aqui eu defino no caso de pós os doi banner de decisão
+            para o restante dos cursos o banner padrão
+            a lógica é aplicada definitivamente na página de inscrição
+            */
             $postId = get_the_id();
             $terms = get_the_terms($postId, 'categoria_curso');
-            foreach ($terms as $term) {
-                $categoria = $term->term_id;
-            }
+            /** Array que contém o slug das categorias do curso */
+            $catSlugs = array_map(function($term){
+                return $term->slug;
+            }, $terms);
+            if(in_array('pos-graduacao', $catSlugs)){
+            ?>
+            <a href="<?php bloginfo('url'); ?>/inscricao/?cursoId=<?php echo $postId; ?>">
+                <img src="<?php bloginfo('template_url') ?>/img/banner-reserve-sua-vaga.jpg" alt="Reserve sua vaga" class="banner-subscribe">
+            </a>
+            <a href="<?php bloginfo('url'); ?>/inscricao/?cursoId=<?php echo $postId; ?>&teams=true">
+                <img src="<?php bloginfo('template_url') ?>/img/banner-cadastre-no-teams-2.jpg" alt="Cadastre-se no teams" class="banner-subscribe">
+            </a>
+            <?php
+            } else {
             ?>
             <a href="<?php bloginfo('url'); ?>/inscricao/?cursoId=<?php echo $postId; ?>">
                 <img src="<?php bloginfo('template_url') ?>/img/banner-inscricao.jpg" alt="Faça sua inscrição" class="banner-subscribe">
             </a>
+            <?php
+            }
+            ?>
         </div>
 
         <!-- sidebar-->
@@ -62,14 +90,26 @@
             <div class="informations mb-3">
                 <h5>Mais informações</h5>
                 <ul>
+                    <li>
+                        <h6>Mensalidade</h6>
+                    </li>
                     <?php
                     $preco = get_field('preco');
-                    if ($preco != false) : ?>
+                    if($preco != false){
+                        foreach ($preco as $item) {
+                            $custo = number_format($item['preco'], 2, ',', '.');
+                            $qtd_parc = $item['qtd_parce'];
+                            $parcStr = $item['qtd_parce'] == 1 ? 'parcela' : 'parcelas';
+                    ?>
                         <li>
-                            <h6>Mensalidade</h6>
-                            <p>R$<?php echo number_format($preco['preco'], 2) ?> (<?php echo $preco['qtd_parce'] ?> parcelas)</p>
+                            <p>
+                                R$<?php echo $custo; ?>
+                                (<?php echo $qtd_parc . ' ' . $parcStr; ?> )</p>
                         </li>
-                    <?php endif; ?>
+                    <?php
+                        }
+                    }
+                    ?>
 
                     <?php if (get_field('carga_horaria') != false) : ?>
                         <li>

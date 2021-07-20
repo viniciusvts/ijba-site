@@ -11,7 +11,26 @@ function ssw_integra_teams_itau(){
         $validNonce = wp_verify_nonce($_POST['_nonce']);
         $isRequestOk = true;//($validNonce == 1);
     }
-    if($isRequestOk){
+    /*
+    ATENÇÂO PROGRAMADOR DO FUTURO!!!!
+    veja a regra de negócio em @link single-curso.php:50
+    */
+    $terms = get_the_terms($_POST['curso'], 'categoria_curso');
+    /** slugs no qual o curso está iserido */
+    $catSlugs = array_map(function($term){
+        return $term->slug;
+    }, $terms);
+    $cursosQueGeramBoleto = array('aperfeicoamento', 'extensao', 'curta-duracao');
+    $canGenerateBoleto = false;
+    foreach ($cursosQueGeramBoleto as $value) {
+        if (in_array($value, $catSlugs)){
+            $canGenerateBoleto = true;
+            break;
+        }
+    }
+    /** [0]preço, [1]parcelas */
+    $precoParcelas = explode('|', $_POST['precoParcelas']);
+    if($isRequestOk && $canGenerateBoleto){
         // gera boleto
         // sanitize inputs
         $pattern = '/(\.|-|,|\/|\s)/';
@@ -30,12 +49,11 @@ function ssw_integra_teams_itau(){
             ),
         );
         //aqui vai ter um case para o valor do curso de acordo com o curso selecionado.
-        $precoField = get_field('preco', $_POST['curso']);
         // transformar em numeros
-        $floatpreco = floatval($precoField['preco']);
+        $floatpreco = floatval($precoParcelas[0]);
         $valorDoBoleto = number_format($floatpreco, 2);
 
-        $parcField = intval($precoField['qtd_parce']);
+        $parcField = intval($precoParcelas[1]);
         
         $vencimento = new DateTime();
         $vencimento->modify('+5 days'); // configura o vencimento para mais 5 dias
@@ -53,38 +71,41 @@ function ssw_integra_teams_itau(){
             $vencimento->modify('+1 month');
         }
     }
-    /** @todo fazer (ou não) a convesão com os boletos para o rd*/ 
-    // if($isRequestOk){
-    //     // não dá para enviar todos os boletos de vez
-    //     // error_message:"Must have length below or equal to '4096'."
-    //     $RDI = new Rdi_wp();
-    //     $data = array(
-    //         'email' => $email,
-    //         'cf_boletos_gerados' => implode(",\n", $boletosLinks),
-    //     );
-    //     $statusRD = $RDI->sendConversionEvent('boletosgerados', $data);
-    //     $isRequestOk = isset($$statusRD->event_uuid);
-    // }
-    // se ainda está tudo certo envia boleta para cliente
     if($isRequestOk){
         // envia email para o adm
         $to = get_option('admin_email'); // email para o usuário
         $subject = 'Inscrição de aluno IBA';
         $message .= '<h2>Dados do usuário: </h2>';
+
+        // aqui pego o preço e a parcela que o user eescolheu
+        if ($canGenerateBoleto){
+            $message .= '<p>preço: ' . $precoParcelas[0] . '</p>';
+            $message .= '<p>parcelas: ' . $precoParcelas[1] . '</p>';
+        }
         foreach ($_POST as $key => $value) {
             $message .= '<p>' . $key . ': ' . $value . '</p>';
         }
-        $message .= '<p>Segue link dos boletos:</p>';
-        foreach ($boletosLinks as $key => $boleto) {
-            $position = $key + 1;
-            $message .= '<p>' . $position . ': ' . $boleto . '</p>';
+        if(isset($boletosLinks)){
+            $message .= '<p>Segue link dos boletos:</p>';
+            foreach ($boletosLinks as $key => $boleto) {
+                $position = $key + 1;
+                $message .= '<p>' . $position . ': ' . $boleto . '</p>';
+            }
         }
         $headers = array('Content-Type: text/html; charset=UTF-8');
         $wpmail = wp_mail( $to, $subject, $message, $headers );
         // end send email
     }
+    $cursosQueCadastramNoTeams = array('aperfeicoamento', 'extensao');
+    $canCadastroTeams = $_POST['teams'] == 'true';
+    foreach ($cursosQueCadastramNoTeams as $value) {
+        if (in_array($value, $catSlugs)){
+            $canCadastroTeams = true;
+            break;
+        }
+    }
     // se ainda está tudo certo cria cliente
-    if($isRequestOk){
+    if($isRequestOk && $canCadastroTeams){
         $SSWTI = new ssw_tint_wp();
         // create user
         $nameLowerCase = strtolower($_POST['nome']);
@@ -105,25 +126,33 @@ function ssw_integra_teams_itau(){
             $isRequestOk = false;
         }
     }
-    if($isRequestOk){
+    if($isRequestOk && $canCadastroTeams){
         // envia email depois de excluir url e identificador
         $to = $_POST['email']; // email para o usuário
         $subject = 'Dados do seu curso IJBA';
         $message = '<p>Usuário no teams: ' . $emailIJBA . '</p>';
         $message .= '<p>Senha: BemVindo910</p>';
         $message .= '<p>Segue link dos boletos:</p>';
-        foreach ($boletosLinks as $key => $boleto) {
-            $position = $key + 1;
-            $message .= '<p>' .$position . ': ' . $boleto . '</p>';
+        if(isset($boletosLinks)){
+            foreach ($boletosLinks as $key => $boleto) {
+                $position = $key + 1;
+                $message .= '<p>' .$position . ': ' . $boleto . '</p>';
+            }
         }
         $headers = array('Content-Type: text/html; charset=UTF-8');
         $wpmail = wp_mail( $to, $subject, $message, $headers );
         // end send email
     }
-  $url = get_option('siteurl') . '/agradecimento-inscricao/?isRequestOk=' . $isRequestOk;
-  // redireciona para o agradecimento
-  wp_redirect($url);
-  exit;
+    $canRedirect = in_array('pos-graduacao', $catSlugs);
+    $link_redirect = get_field('link_redirect', $_POST['curso']);
+    if($link_redirect && $canRedirect){
+        $url = $link_redirect;
+    } else {
+        $url = get_option('siteurl') . '/agradecimento-inscricao/?isRequestOk=' . $isRequestOk;
+    }
+    // redireciona para o agradecimento
+    wp_redirect($url);
+    exit;
 }
 /**
  * Função registra os endpoints

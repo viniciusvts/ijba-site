@@ -38,6 +38,18 @@
         } catch (error) {
             console.warn('Erro ao definir mascara cep: ', error);
         }
+        initCursoForm();
+    }
+    /**
+     * executa a lógica de buscar preço dos cursos no formulário de inscrição
+     * @author Vinicius de Santana
+     */
+    function initCursoForm(){
+        /** @type HTMLElement */
+        var curso = querySelector('#form-teams-itau #curso');
+        if(!curso) return;
+        // evento no select do curso
+        curso.addEventListener('change', cursoIntegracaoEvt);
     }
     /**
      * Mascara de Telefone para ser usada em inputs html
@@ -70,5 +82,38 @@
       // Coloca a pontuação do CEP
       v=v.replace(/^(\d{5})(\d)/g,"$1-$2");
       evt.target.value = v;
+    }
+    function cursoIntegracaoEvt(evt){
+        // limpa o  input e mostra "carregando..."
+        // https://developer.mozilla.org/pt-BR/docs/Web/API/HTMLOptionElement/Option
+        /** @type HTMLElement */
+        var precoParcelas = querySelector('#form-teams-itau #precoParcelas');
+        precoParcelas.options.length = 0;
+        var cursoId = evt.target.value;
+        if (cursoId == ''){
+            precoParcelas.options.add(new Option('Selecione um curso primeiro', ''));
+            return;
+        }
+        precoParcelas.options.add(new Option('Carregando...', ''));
+        // carrega
+        var url = '/wp-json/acf/v3/curso/'+cursoId+'/preco/';
+        fetch(url)
+        .then(resp => resp.json())
+        .then(json => {
+            console.warn(json);
+            //limpa novamente e lança "Selecione"
+            precoParcelas.options.length = 0;
+            precoParcelas.options.add(new Option('Selecione uma parcela', ''));
+            //popula o HTMLOptionCollection
+            for (const item of json.preco) {
+                var parcStr = item.qtd_parce == 1 ? 'parcela' : 'parcelas';
+                var precoNumber = Number(item.preco);
+                var custo = precoNumber.toLocaleString('pt-BR',{ style: 'currency', currency: 'BRL' });
+
+                var optionValue = item.preco + '|' + item.qtd_parce;
+                var optionText = item.qtd_parce + ' ' + parcStr + ' de ' + custo;
+                precoParcelas.options.add(new Option(optionText, optionValue));
+            }
+        });
     }
 })(window, document, console, x=>document.querySelector(x), x=>document.querySelectorAll(x));
