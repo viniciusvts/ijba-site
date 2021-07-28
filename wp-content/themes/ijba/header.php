@@ -19,4 +19,7 @@
 
 <body>
 
-<?php get_template_part('template/head'); ?>
+<?php
+    get_template_part('template/modal', 'buscar');
+    get_template_part('template/head');
+?>

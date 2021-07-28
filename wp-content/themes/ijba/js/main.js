@@ -39,6 +39,7 @@
             console.warn('Erro ao definir mascara cep: ', error);
         }
         initCursoForm();
+        initModalSearch();
     }
     /**
      * executa a lógica de buscar preço dos cursos no formulário de inscrição
@@ -114,6 +115,28 @@
                 var optionText = item.qtd_parce + ' ' + parcStr + ' de ' + custo;
                 precoParcelas.options.add(new Option(optionText, optionValue));
             }
+        });
+    }
+    /**
+     * Inicia o modal da busca
+     * @author Vinicius de Santana
+     */
+    function initModalSearch(){
+        const divsQueChamamOModal = querySelectorAll('[data-show="modalSearch"]');
+        const modal = querySelector('#modal-busca');
+        console.log('chamam: ', modal);
+        if(divsQueChamamOModal.length == 0) return console.warn('Não há div chamando o modal busca');
+        if(!modal) return console.warn('Foi encontrado divs mas não a busca, adicione-o a página');
+        // adiciona evento para exibir o formulário de busca
+        divsQueChamamOModal.forEach((item)=>{
+            item.addEventListener('click', ()=>{
+                modal.classList.add('active');
+                querySelector('#s').select();
+            });
+        });
+        // adiciona o evento para esconder o form de busca
+        modal.addEventListener('click', (evt)=>{
+            if(evt.target == modal) return modal.classList.remove('active');
         });
     }
 })(window, document, console, x=>document.querySelector(x), x=>document.querySelectorAll(x));

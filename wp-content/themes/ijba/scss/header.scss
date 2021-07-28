@@ -66,3 +66,38 @@ header {
         border-radius: 5px;
     }
 }
+
+section.modal-buscar{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    background-color: rgba(0, 0, 0, 70%);
+    z-index: 9999; // nav está com 999
+    display: none;
+    &.active{
+        display: flex;
+    }
+    .intern{
+        margin: auto;
+        padding: 30px;
+        background-image: url(../img/footer.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        max-width: 90%;
+        label{
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        input{
+            background-color: white;
+            padding: 10px 25px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: none;
+            &[type="submit"]{
+                margin-left: 0;
+            }
+        }
+    }
+}

@@ -23,7 +23,7 @@
       </div>
       <div class="row align-items-center justify-content-end d-none d-md-flex">
         <div class="col">
-          <button class="search">
+          <button class="search" data-show="modalSearch">
             <img src="<?php bloginfo('template_url'); ?>/svg/magnifying-glass.svg" alt="Buscar">
           </button>
         </div>
