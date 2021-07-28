@@ -6,7 +6,7 @@
             <?php the_post_thumbnail('large', array('class' => 'd-block w-100 filter', 'title' => get_the_title(), 'alt' => get_the_title())); ?>
             <div class="carousel-caption">
                 <h1>
-                    <?php the_title(); ?>
+                    Resultados da busca por: <?php echo get_search_query(); ?>
                 </h1>
                 <p><?php wp_custom_breadcrumbs(); ?></p>
             </div>
