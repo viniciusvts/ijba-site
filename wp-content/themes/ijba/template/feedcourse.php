@@ -1,36 +1,62 @@
+<?php
+$wp_query_extensao = new WP_Query(array(
+    'post_type' => 'curso',
+    'posts_per_page' => 4,
+    'tax_query' => array(
+        array(
+            'taxonomy' => 'categoria_curso',
+            'field' => 'slug',
+            'terms' => 'extensao'
+        )
+    ),
+));
+$wp_query_aperf = new WP_Query(array(
+    'post_type' => 'curso',
+    'posts_per_page' => 6,
+    'tax_query' => array(
+        array(
+            'taxonomy' => 'categoria_curso',
+            'field' => 'slug',
+            'terms' => 'aperfeicoamento'
+        )
+    ),
+));
+if ($wp_query_aperf->have_posts() || $wp_query_extensao->have_posts()){
+?>
 <div class="container mt-5 mb-5 course" id="section-feed-courses">
     <h2 class="text-center">Mais cursos em destaque</h2>
     <div class="row">
         <div class="col">
             <!-- navegação -->
-            <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">                
+            <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist"> 
+                <?php
+                if($wp_query_extensao->have_posts()){
+                ?>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="pills-extensao-tab" data-bs-toggle="pill" data-bs-target="#pills-extensao" type="button" role="tab" aria-controls="pills-extensao" aria-selected="true">Extensão</button>
                 </li>
-
+                <?php
+                }
+                if($wp_query_aperf->have_posts()){
+                ?>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="pills-aperfeicoamento-tab" data-bs-toggle="pill" data-bs-target="#pills-aperfeicoamento" type="button" role="tab" aria-controls="pills-aperfeicoamento" aria-selected="true">Aperfeiçoamento</button>
                 </li>
+                <?php
+                }
+                ?>
             </ul>
 
             <!-- conteúdo -->
             <div class="tab-content mt-5" id="pills-tabContent">
+                <?php
+                if($wp_query_extensao->have_posts()){
+                ?>
                 <div class="tab-pane fade show active" id="pills-extensao" role="tabpanel" aria-labelledby="pills-extensao-tab">
                     <div class="slider-course" id="extensao">
                         <div class="container-slider-course">
                             <div class="itens-slider-course">
                                 <?php
-                                $wp_query_extensao = new WP_Query(array(
-                                    'post_type' => 'curso',
-                                    'posts_per_page' => 4,
-                                    'tax_query' => array(
-                                        array(
-                                            'taxonomy' => 'categoria_curso',
-                                            'field' => 'slug',
-                                            'terms' => 'extensao'
-                                        )
-                                    ),
-                                ));
                                 $positionExtensao = 0;
                                 
                                 $postsExensao = $wp_query_extensao->found_posts;
@@ -103,22 +129,15 @@
                         </div>
                     </div>
                 </div>
+                <?php
+                }
+                if($wp_query_aperf->have_posts()){
+                ?>
                 <div class="tab-pane fade" id="pills-aperfeicoamento" role="tabpanel" aria-labelledby="pills-aperfeicoamento-tab">
                     <div class="slider-course" id="aperf">
                         <div class="container-slider-course">
                             <div class="itens-slider-course">
                                 <?php
-                                $wp_query_aperf = new WP_Query(array(
-                                    'post_type' => 'curso',
-                                    'posts_per_page' => 6,
-                                    'tax_query' => array(
-                                        array(
-                                            'taxonomy' => 'categoria_curso',
-                                            'field' => 'slug',
-                                            'terms' => 'aperfeicoamento'
-                                        )
-                                    ),
-                                ));
                                 $positionAperf = 0;
                                 
                                 $postsExensao = $wp_query_aperf->found_posts;
@@ -193,7 +212,12 @@
                     wp_reset_query();
                     ?>
                 </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>
 </div>
+<?php
+}
