@@ -61,5 +61,5 @@ wp-content/mu-plugins
 wp-content/updraft
 wp-content/uploads-old
 wp-content/cache
-
+wp-config.php
 /.htaccess
