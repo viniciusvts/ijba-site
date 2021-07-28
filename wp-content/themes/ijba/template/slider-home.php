@@ -4,7 +4,7 @@
       $curso = new WP_Query(array(
         'post_type' => 'curso',
         'orderby' => 'date',
-        'posts_per_page' => 6,
+        'posts_per_page' => 10,
         'tax_query' => array(
           array(
             'taxonomy' => 'categoria_curso',
