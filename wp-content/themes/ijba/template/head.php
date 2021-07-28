@@ -28,7 +28,7 @@
           </button>
         </div>
         <div class="col-auto">
-          <a href="https://teams.microsoft.com/_#/school//?ctx=teamsGrid">
+          <a href="https://moodle.ijba.com.br" target="_blank">
             <button class="green">
               Área do aluno
             </button>
