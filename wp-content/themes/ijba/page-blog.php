@@ -22,7 +22,15 @@
             <?php
             $wp_query = new WP_Query(array(
                 'post_type' => 'post',
-                'posts_per_page' => 7
+                'posts_per_page' => 7,
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'category',
+                        'field'    => 'slug',
+                        'terms'    => 'artigos',
+                        'operator' => 'NOT IN',
+                    ),
+                ),
             ));
             $position = 0;
             while ($wp_query->have_posts()) : $wp_query->the_post();
