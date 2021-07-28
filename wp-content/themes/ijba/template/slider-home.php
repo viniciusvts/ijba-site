@@ -14,12 +14,11 @@
         ),
       ));
 
-      $index = 0;
       $postsExensao = $curso->found_posts;
 
       while ($curso->have_posts()) : $curso->the_post();
       ?>
-        <div class="carousel-item <?php if ($index == 0) {
+        <div class="carousel-item <?php if ($curso->current_post == 0) {
                                     echo "active";
                                   } ?>">
           <?php the_post_thumbnail('large', array('class' => 'd-block w-100 filter', 'title' => get_the_title(), 'alt' => get_the_title())); ?>
@@ -102,7 +101,7 @@
     <!-- indicadores -->
     <div class="carousel-indicators">
       <?php
-      for ($slide = 0; $slide < $postsExensao - 1; $slide++) {
+      for ($slide = 0; $slide < $postsExensao; $slide++) {
       ?>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $slide; ?>" class="<?php if ($slide == 0) : echo "active";endif; ?>" aria-current="true" aria-label="Slide <?php echo $slide; ?>"> </button>
       <?php
