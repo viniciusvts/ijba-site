@@ -62,7 +62,7 @@ function ssw_integra_teams_itau(){
         $SSW_ITAUI = new ssw_itaui_wp();
         $boletosLinks = [];
         for ($i=1; $i <= $parcField; $i++) {
-            $boleto = $SSW_ITAUI->registerBoleto($valorDoBoleto, $vencimento, $pagador, true);
+            $boleto = $SSW_ITAUI->registerBoleto($valorDoBoleto, $vencimento, $pagador);
             if(!$boleto->pagador){
                 $isRequestOk = false;
                 break;
