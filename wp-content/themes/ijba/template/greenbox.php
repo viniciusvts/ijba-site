@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 mx-auto green-box <?php echo $grennbox_negativetop ? 'negative-top' : ''; ?>">
-            <h2>Escolha seu curso e increva-se</h2>
+            <h2>Escolha seu curso e inscreva-se</h2>
             <form action="/" method="get" name="greenbox">
                 <?php 
                 // primeiro dropdown das categorias
