@@ -28,7 +28,7 @@
           </button>
         </div>
         <div class="col-auto">
-          <a href="https://moodle.ijba.com.br" target="_blank">
+          <a href="https://moodle.ijba.com.br/auth/oidc/" target="_blank">
             <button class="green">
               Área do aluno
             </button>
