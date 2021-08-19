@@ -73,6 +73,9 @@
             bottom: 0;
             text-align: center;
         }
+        @media (min-width: $fullHdDesktops) {
+            top: 17rem;
+        }
     }
     .filter {
         min-height: 100vh;
