@@ -74,7 +74,7 @@ function ssw_integra_teams_itau(){
     if($isRequestOk){
         // envia email para o adm
         $to = get_option('admin_email'); // email para o usuário
-        $subject = 'Inscrição de aluno IBA';
+        $subject = 'Inscrição de aluno IJBA';
         $message .= '<h2>Dados do usuário: </h2>';
 
         // aqui pego o preço e a parcela que o user eescolheu
@@ -132,8 +132,8 @@ function ssw_integra_teams_itau(){
         $subject = 'Dados do seu curso IJBA';
         $message = '<p>Usuário no teams: ' . $emailIJBA . '</p>';
         $message .= '<p>Senha: BemVindo910</p>';
-        $message .= '<p>Segue link dos boletos:</p>';
         if(isset($boletosLinks)){
+            $message .= '<p>Segue link dos boletos:</p>';
             foreach ($boletosLinks as $key => $boleto) {
                 $position = $key + 1;
                 $message .= '<p>' .$position . ': ' . $boleto . '</p>';
