@@ -1,17 +1,17 @@
   <div id="carouselExampleCaptions" class="carousel carousel-home slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <?php
+      /**
+       * Exibir no banner ursos marcados como destaque
+       * job #24901
+       * instruções para filtro: https://www.advancedcustomfields.com/resources/query-posts-custom-fields/
+       * instrução do campo true/false: https://www.advancedcustomfields.com/resources/true-false/
+       */
       $curso = new WP_Query(array(
-        'post_type' => 'curso',
-        'orderby' => 'date',
-        'posts_per_page' => 10,
-        'tax_query' => array(
-          array(
-            'taxonomy' => 'categoria_curso',
-            'field' => 'slug',
-            'terms' => 'pos-graduacao'
-          )
-        ),
+        'numberposts'	=> -1,
+        'post_type'		=> 'curso',
+        'meta_key'		=> 'destaque',
+        'meta_value'	=> 1
       ));
 
       $postsExensao = $curso->found_posts;
